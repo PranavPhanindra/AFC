@@ -8,20 +8,19 @@ def get_parser():
                                      description="Incremental Learning trainer.")
 
     # Model related:
-    parser.add_argument("-m", "--model", default="icarl", type=str,
-                        help="Incremental learner to train.")
-    parser.add_argument("-c", "--convnet", default="rebuffi", type=str,
-                        help="Backbone convnet.")
-    parser.add_argument("--dropout", default=0., type=float,
-                        help="Dropout value.")
-    parser.add_argument("-he", "--herding", default=None, type=str,
-                        help="Method to gather previous tasks' examples.")
-    parser.add_argument("-memory", "--memory-size", default=2000, type=int,
-                        help="Max number of storable examplars.")
-    parser.add_argument("-temp", "--temperature", default=1, type=int,
-                        help="Temperature used to soften the predictions.")
-    parser.add_argument("-fixed-memory", "--fixed-memory", action="store_true",
-                        help="Instead of shrinking the memory, it's already at minimum.")
+    #Default model is icarl which is used as base
+    parser.add_argument("-m", "--model", default="icarl", type=str,help="Incremental learner to train.")
+    #Same as what is done in icarl
+    parser.add_argument("-c", "--convnet", default="rebuffi", type=str, help="Backbone convnet.")
+    #whether to have dropout or no
+    parser.add_argument("--dropout", default=0., type=float, help="Dropout value.")
+    #how are exemplars chosen
+    parser.add_argument("-he", "--herding", default=None, type=str, help="Method to gather previous tasks' examples.")
+    #What is the maximum amount of storage available , maximum number of exemplars
+    parser.add_argument("-memory", "--memory-size", default=2000, type=int,help="Max number of storable examplars.")
+    #Value of eeta
+    parser.add_argument("-temp", "--temperature", default=1, type=int,help="Temperature used to soften the predictions.")
+    parser.add_argument("-fixed-memory", "--fixed-memory", action="store_true",help="Instead of shrinking the memory, it's already at minimum.")
 
     # Data related:
     parser.add_argument("-d", "--dataset", default="cifar100", type=str,
