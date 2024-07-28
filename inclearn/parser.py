@@ -8,25 +8,36 @@ def get_parser():
                                      description="Incremental Learning trainer.")
 
     # Model related:
+    
     #Default model is icarl which is used as base
     parser.add_argument("-m", "--model", default="icarl", type=str,help="Incremental learner to train.")
+    
     #Same as what is done in icarl
     parser.add_argument("-c", "--convnet", default="rebuffi", type=str, help="Backbone convnet.")
+    
     #whether to have dropout or no
     parser.add_argument("--dropout", default=0., type=float, help="Dropout value.")
+    
     #how are exemplars chosen
     parser.add_argument("-he", "--herding", default=None, type=str, help="Method to gather previous tasks' examples.")
+    
     #What is the maximum amount of storage available , maximum number of exemplars
     parser.add_argument("-memory", "--memory-size", default=2000, type=int,help="Max number of storable examplars.")
+    
     #Value of eeta
     parser.add_argument("-temp", "--temperature", default=1, type=int,help="Temperature used to soften the predictions.")
+
+    #Fixed no of exemplars per class
     parser.add_argument("-fixed-memory", "--fixed-memory", action="store_true",help="Instead of shrinking the memory, it's already at minimum.")
 
+    #----------------------------------------------------------------------------------------------------------------------------
     # Data related:
-    parser.add_argument("-d", "--dataset", default="cifar100", type=str,
-                        help="Dataset to test on.")
-    parser.add_argument("-inc", "--increment", default=10, type=int,
-                        help="Number of class to add per task.")
+    
+    #what is the data set used
+    parser.add_argument("-d", "--dataset", default="cifar100", type=str,help="Dataset to test on.")
+    
+    #no of classes in each task
+    parser.add_argument("-inc", "--increment", default=10, type=int,help="Number of class to add per task.")
     parser.add_argument("-b", "--batch-size", default=128, type=int,
                         help="Batch size.")
     parser.add_argument("-w", "--workers", default=0, type=int,
